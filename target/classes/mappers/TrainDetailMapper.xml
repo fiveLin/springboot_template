@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.lin.dao.edu.EduDao" >
+  <resultMap id="BaseResultMap" type="com.example.lin.pojo.edu.EduPo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cate_id" property="cateId" jdbcType="INTEGER" />
+    <result column="train_name" property="trainName" jdbcType="VARCHAR" />
+    <result column="train_addr" property="trainAddr" jdbcType="VARCHAR" />
+    <result column="train_target" property="trainTarget" jdbcType="INTEGER" />
+    <result column="dept_id" property="deptId" jdbcType="INTEGER" />
+    <result column="area_id" property="areaId" jdbcType="INTEGER" />
+    <result column="industry_id" property="industryId" jdbcType="INTEGER" />
+    <result column="extra_info" property="extraInfo" jdbcType="VARCHAR" />
+    <result column="pic_ids" property="picIds" jdbcType="VARCHAR" />
+    <result column="file_ids" property="fileIds" jdbcType="VARCHAR" />
+    <result column="train_begin" property="trainBegin" jdbcType="TIMESTAMP" />
+    <result column="train_end" property="trainEnd" jdbcType="TIMESTAMP" />
+    <result column="gmt_update" property="gmtUpdate" jdbcType="TIMESTAMP" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="is_delete" property="isDelete" jdbcType="TINYINT" />
+    <result column="teacher_names" property="teacherNames" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.example.lin.pojo.edu.EduPo" extends="BaseResultMap" >
+    <result column="train_content" property="trainContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cate_id, train_name, train_addr, train_target, dept_id, area_id, industry_id, 
+    extra_info, pic_ids, file_ids, train_begin, train_end, gmt_update, gmt_create, is_delete, 
+    teacher_names
+  </sql>
+  <sql id="Blob_Column_List" >
+    train_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_TRAIN_DETAIL
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T_TRAIN_DETAIL
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.lin.pojo.edu.EduPo" useGeneratedKeys="true" keyColumn="id" keyProperty="id" >
+    insert into T_TRAIN_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cateId != null" >
+        cate_id,
+      </if>
+      <if test="trainName != null" >
+        train_name,
+      </if>
+      <if test="trainAddr != null" >
+        train_addr,
+      </if>
+      <if test="trainTarget != null" >
+        train_target,
+      </if>
+      <if test="deptId != null" >
+        dept_id,
+      </if>
+      <if test="areaId != null" >
+        area_id,
+      </if>
+      <if test="industryId != null" >
+        industry_id,
+      </if>
+      <if test="extraInfo != null" >
+        extra_info,
+      </if>
+      <if test="picIds != null" >
+        pic_ids,
+      </if>
+      <if test="fileIds != null" >
+        file_ids,
+      </if>
+      <if test="trainBegin != null" >
+        train_begin,
+      </if>
+      <if test="trainEnd != null" >
+        train_end,
+      </if>
+      <if test="gmtUpdate != null" >
+        gmt_update,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="teacherNames != null" >
+        teacher_names,
+      </if>
+      <if test="trainContent != null" >
+        train_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cateId != null" >
+        #{cateId,jdbcType=INTEGER},
+      </if>
+      <if test="trainName != null" >
+        #{trainName,jdbcType=VARCHAR},
+      </if>
+      <if test="trainAddr != null" >
+        #{trainAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="trainTarget != null" >
+        #{trainTarget,jdbcType=INTEGER},
+      </if>
+      <if test="deptId != null" >
+        #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="industryId != null" >
+        #{industryId,jdbcType=INTEGER},
+      </if>
+      <if test="extraInfo != null" >
+        #{extraInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="picIds != null" >
+        #{picIds,jdbcType=VARCHAR},
+      </if>
+      <if test="fileIds != null" >
+        #{fileIds,jdbcType=VARCHAR},
+      </if>
+      <if test="trainBegin != null" >
+        #{trainBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trainEnd != null" >
+        #{trainEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null" >
+        #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="teacherNames != null" >
+        #{teacherNames,jdbcType=VARCHAR},
+      </if>
+      <if test="trainContent != null" >
+        #{trainContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.example.lin.pojo.edu.EduPo" >
+    update T_TRAIN_DETAIL
+    <set >
+      <if test="cateId != null" >
+        cate_id = #{cateId,jdbcType=INTEGER},
+      </if>
+      <if test="trainName != null" >
+        train_name = #{trainName,jdbcType=VARCHAR},
+      </if>
+      <if test="trainAddr != null" >
+        train_addr = #{trainAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="trainTarget != null" >
+        train_target = #{trainTarget,jdbcType=INTEGER},
+      </if>
+      <if test="deptId != null" >
+        dept_id = #{deptId,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null" >
+        area_id = #{areaId,jdbcType=INTEGER},
+      </if>
+      <if test="industryId != null" >
+        industry_id = #{industryId,jdbcType=INTEGER},
+      </if>
+      <if test="extraInfo != null" >
+        extra_info = #{extraInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="picIds != null" >
+        pic_ids = #{picIds,jdbcType=VARCHAR},
+      </if>
+      <if test="fileIds != null" >
+        file_ids = #{fileIds,jdbcType=VARCHAR},
+      </if>
+      <if test="trainBegin != null" >
+        train_begin = #{trainBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trainEnd != null" >
+        train_end = #{trainEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtUpdate != null" >
+        gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="teacherNames != null" >
+        teacher_names = #{teacherNames,jdbcType=VARCHAR},
+      </if>
+      <if test="trainContent != null" >
+        train_content = #{trainContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="ResultMapWithBLOBs" parameterType="com.example.lin.pojo.edu.EduPo" >
+    select id, cate_id, train_name, train_addr, train_target, dept_id, area_id, industry_id, 
+    extra_info, pic_ids, file_ids, train_begin, train_end, gmt_update, gmt_create, is_delete, 
+    teacher_names, train_content
+    from T_TRAIN_DETAIL
+    <where >
+       1=1 
+      <if test="cateId != null" >
+         and cate_id = #{cateId,jdbcType=INTEGER}
+      </if>
+      <if test="trainName != null" >
+         and train_name = #{trainName,jdbcType=VARCHAR}
+      </if>
+      <if test="trainAddr != null" >
+         and train_addr = #{trainAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="trainTarget != null" >
+         and train_target = #{trainTarget,jdbcType=INTEGER}
+      </if>
+      <if test="deptId != null" >
+         and dept_id = #{deptId,jdbcType=INTEGER}
+      </if>
+      <if test="areaId != null" >
+         and area_id = #{areaId,jdbcType=INTEGER}
+      </if>
+      <if test="industryId != null" >
+         and industry_id = #{industryId,jdbcType=INTEGER}
+      </if>
+      <if test="extraInfo != null" >
+         and extra_info = #{extraInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="picIds != null" >
+         and pic_ids = #{picIds,jdbcType=VARCHAR}
+      </if>
+      <if test="fileIds != null" >
+         and file_ids = #{fileIds,jdbcType=VARCHAR}
+      </if>
+      <if test="trainBegin != null" >
+         and train_begin = #{trainBegin,jdbcType=TIMESTAMP}
+      </if>
+      <if test="trainEnd != null" >
+         and train_end = #{trainEnd,jdbcType=TIMESTAMP}
+      </if>
+      <if test="gmtUpdate != null" >
+         and gmt_update = #{gmtUpdate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="gmtCreate != null" >
+         and gmt_create = #{gmtCreate,jdbcType=TIMESTAMP}
+      </if>
+      <if test="isDelete != null" >
+         and is_delete = #{isDelete,jdbcType=TINYINT}
+      </if>
+      <if test="teacherNames != null" >
+         and teacher_names = #{teacherNames,jdbcType=VARCHAR}
+      </if>
+      <if test="trainContent != null" >
+         and train_content = #{trainContent,jdbcType=LONGVARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

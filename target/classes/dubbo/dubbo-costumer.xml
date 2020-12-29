@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://code.alibabatech.com/schema/dubbo
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者。 -->
+    <dubbo:application name="hti-consumer"/>
+
+    <dubbo:registry  address="redis://192.168.106.180:6379"
+                     timeout="10000" file="/icooper/appdata/.dubbo/hti.cache"/>
+    <dubbo:reference id="dubboTrainCateService" interface="com.example.lin.service.TrainCateService"></dubbo:reference>
+    <dubbo:consumer check="false"/>
+
+</beans>
